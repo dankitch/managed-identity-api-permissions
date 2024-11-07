@@ -6,10 +6,10 @@ $graphApp = Get-MgServicePrincipal -Filter "AppId eq '00000003-0000-0000-c000-00
 
 $PermissionName = "User.Read"
 $AppRole = $graphApp.AppRoles | Where-Object {$_.Value -eq $PermissionName -and $_.AllowedMemberTypes -contains "Application"}
-$managedID = Get-MgServicePrincipal -Filter "DisplayName eq '$ManagedIDdisplayNam'"
+$managedID = Get-MgServicePrincipal -Filter "DisplayName eq '$ManagedIDdisplayName'"
 New-MgServicePrincipalAppRoleAssignment -PrincipalId $managedID.Id -ServicePrincipalId $managedID.Id -ResourceId $graphApp.Id -AppRoleId $AppRole.Id
 
 $PermissionName = "AuditLog.Read.All"
 $AppRole = $graphApp.AppRoles | Where-Object {$_.Value -eq $PermissionName -and $_.AllowedMemberTypes -contains "Application"}
-$managedID = Get-MgServicePrincipal -Filter "DisplayName eq '$ManagedIDdisplayNam'"
+$managedID = Get-MgServicePrincipal -Filter "DisplayName eq '$ManagedIDdisplayName'"
 New-MgServicePrincipalAppRoleAssignment -PrincipalId $managedID.Id -ServicePrincipalId $managedID.Id -ResourceId $graphApp.Id -AppRoleId $AppRole.Id
